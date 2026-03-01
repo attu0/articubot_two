@@ -58,7 +58,7 @@
         </visual>
         <collision>
             <geometry>
-                <mesh filename="file://$(find articubot_two)/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+                <sphere radius="0.035" />
             </geometry>
         </collision>
         <xacro:inertial_cylinder mass="0.2" radius="0.07" length="0.02">
@@ -90,7 +90,7 @@
         </visual>
         <collision>
             <geometry>
-                <mesh filename="file://$(find articubot_two)/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+                <sphere radius="0.035" />
             </geometry>
         </collision>
         <xacro:inertial_cylinder mass="0.2" radius="0.07" length="0.02">

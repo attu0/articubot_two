@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- IMU JOINT -->
+    <joint name="imu_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="imu_link"/>
+        <origin xyz="0.0 0 0.1" rpy="0 0 0"/>
+    </joint>
+
+    <!-- IMU LINK -->
+    <link name="imu_link">
+        <visual>
+            <geometry>
+                <box size="0.02 0.02 0.02"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <box size="0.02 0.02 0.02"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.01"/>
+            <origin xyz="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0"
+                     iyy="1e-6" iyz="0"
+                     izz="1e-6"/>
+        </inertial>
+    </link>
+
+    <!-- GAZEBO IMU SENSOR -->
+    
+
+<!-- GAZEBO IMU PLUGIN (Gazebo Classic + ROS2 Humble) -->
+
+    <gazebo reference="imu_link">
+      <sensor name="imu_sensor" type="imu">
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+    
+        <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+          <ros>
+            <remapping>~/out:=/imu/data</remapping>
+          </ros>
+          <frame_name>imu_link</frame_name>
+        </plugin>
+    
+      </sensor>
+    </gazebo>
+
+
+</robot>
