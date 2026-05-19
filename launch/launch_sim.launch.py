@@ -25,7 +25,7 @@ def generate_launch_description():
         launch_arguments={'use_sim_time': 'true'}.items()
     )
 
-    # Gazebo Harmonic
+    # Gazebo Harmonic launch
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(
@@ -40,15 +40,12 @@ def generate_launch_description():
     )
 
     # Spawn robot
-    spawn = Node(
+    spawn_entity = Node(
         package='ros_gz_sim',
         executable='create',
         arguments=[
             '-topic', 'robot_description',
-            '-name', 'my_bot',
-            '-x', '0.0',
-            '-y', '0.0',
-            '-z', '0.2'
+            '-name', 'my_bot'
         ],
         output='screen'
     )
@@ -56,5 +53,5 @@ def generate_launch_description():
     return LaunchDescription([
         rsp,
         gazebo,
-        spawn
+        spawn_entity,
     ])
