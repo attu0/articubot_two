@@ -50,8 +50,28 @@ def generate_launch_description():
         output='screen'
     )
 
+
+    bridge_params = os.path.join(get_package_share_directory(package_name),'config','gz_bridge.yaml')
+    ros_gz_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
+        ]
+    )
+
+    ros_gz_image_bridge = Node(
+        package="ros_gz_image",
+        executable="image_bridge",
+        arguments=["/camera/image_raw"]
+    )
+
     return LaunchDescription([
-        rsp,
-        gazebo,
-        spawn_entity,
-    ])
+    rsp,
+    gazebo,
+    spawn_entity,
+    ros_gz_bridge,
+    ros_gz_image_bridge,
+])
