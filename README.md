@@ -2,7 +2,7 @@
 
 ## Requirements
 - OS: Ubuntu 22.04 Jammy
-- Ros2 Humble
+- Ros2 jazzy
 
 ## Build your Workspace for devloper pc
 
@@ -44,7 +44,7 @@ colcon build --symlink-install
 ##### Source it
 ```bash
 cd ~/dev_ws
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source install/setup.bash
 ```
 
@@ -83,7 +83,7 @@ ros2 launch articubot_one rplidar.launch.py
 ##### Source it
 ```bash
 cd ~/robot_ws
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source install/setup.bash
 ```
 
