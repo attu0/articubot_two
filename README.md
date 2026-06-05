@@ -1,6 +1,9 @@
 # Raspberry Pi Setup Guide
 
 ## Requirements
+
+check for main branch for humble jazzy is different branch
+
 - OS: Ubuntu 22.04 Jammy
 - Ros2 Humble
 
