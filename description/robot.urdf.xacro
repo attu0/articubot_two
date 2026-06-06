@@ -4,5 +4,6 @@
     <xacro:include filename="$(find articubot_two)/description/robot_core.xacro" />
     <xacro:include filename="$(find articubot_two)/description/gazebo_control.xacro" />
     <xacro:include filename="$(find articubot_two)/description/lidar.xacro" />
+    <xacro:include filename="$(find articubot_two)/description/camera.xacro" />
 
 </robot>
