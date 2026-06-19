@@ -85,12 +85,12 @@ ros2 launch articubot_one rplidar.launch.py
 
 ##### for slam
 ```bash
-ros2 launch slam_toolbox online_async_launch.py slam_params_file:=/home/atharv/Desktop/dev_Ws/src/articubot_two/config/mapper_params_online_async.yaml
+ros2 launch articubot_two online_async_launch.py slam_params_file:=/home/atharv/Desktop/dev_Ws/src/articubot_two/config/mapper_params_online_async.yaml
 ```
 
 ##### for localization
 ```bash
-ros2 launch nav2_bringup localization_launch.py map:=/home/atharv/Desktop/dev_Ws/map_save.yaml params_file:=/home/atharv/Desktop/dev_Ws/src/articubot_two/config/nav2_params_clean.yaml use_sim_time:=true
+ros2 launch articubot_two localization_launch.py map:=/home/atharv/Desktop/dev_Ws/map_save.yaml params_file:=/home/atharv/Desktop/dev_Ws/src/articubot_two/config/nav2_params_clean.yaml use_sim_time:=true
 ```
 
 ##### for navigation
