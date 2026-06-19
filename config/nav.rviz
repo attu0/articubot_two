@@ -4,7 +4,7 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /Map2
+        - /Global Options1
       Splitter Ratio: 0.5
     Tree Height: 468
   - Class: rviz_common/Selection
@@ -323,21 +323,26 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -1.4450000524520874
-      Class: rviz_default_plugins/TopDownOrtho
+      Class: rviz_default_plugins/Orbit
+      Distance: 13.372947692871094
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
+      Focal Point:
+        X: -0.00014779961202293634
+        Y: -0.000715168658643961
+        Z: -0.005384792108088732
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 104.19364929199219
+      Pitch: 1.5697963237762451
       Target Frame: <Fixed Frame>
-      Value: TopDownOrtho (rviz_default_plugins)
-      X: 1.3529088497161865
-      Y: -1.6902755498886108
+      Value: Orbit (rviz)
+      Yaw: 3.0736117362976074
     Saved: ~
 Window Geometry:
   Camera:

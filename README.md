@@ -55,12 +55,17 @@ ros2 launch articubot_one launch_sim.launch.py
 
 ##### ROS Gazebo run with My World
 ```bash
-ros2 launch articubot_one launch_sim.launch.py world:=src/articubot_one/worlds/world.world 
+ros2 launch articubot_one launch_sim.launch.py use_sim_time:=true
+```
+##### Launch rviz for noraml
+```bash
+rviz2 -d src/articubot_one/config/map.rviz
 ```
 
-##### Launch rviz
+
+##### Launch rviz for navigation
 ```bash
-rviz2 -d src/articubot_one/config/main.rviz
+rviz2 -d src/articubot_one/config/nav.rviz
 ```
 
 ##### Control the Robot
@@ -77,6 +82,22 @@ ros2 run rqt_image_view rqt_image_view
 ```bash
 ros2 launch articubot_one rplidar.launch.py
 ```
+
+##### for slam
+```bash
+ros2 launch slam_toolbox online_async_launch.py slam_params_file:=/home/atharv/Desktop/dev_Ws/src/articubot_two/config/mapper_params_online_async.yaml
+```
+
+##### for localization
+```bash
+ros2 launch nav2_bringup localization_launch.py map:=/home/atharv/Desktop/dev_Ws/map_save.yaml params_file:=/home/atharv/Desktop/dev_Ws/src/articubot_two/config/nav2_params_clean.yaml use_sim_time:=true
+```
+
+##### for navigation
+```bash
+ros2 launch articubot_two navigation_launch.py params_file:=/home/atharv/Desktop/dev_Ws/src/articubot_two/config/nav2_params_clean.yaml use_sim_time:=true
+```
+
 
 ## Run the Real Robot
 
