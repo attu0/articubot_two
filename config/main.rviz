@@ -71,8 +71,6 @@ Visualization Manager:
           Value: true
         left_wheel:
           Value: true
-        map:
-          Value: true
         odom:
           Value: true
         right_wheel:
@@ -83,25 +81,24 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        map:
-          odom:
-            base_link:
-              base_footprint:
+        odom:
+          base_link:
+            base_footprint:
+              {}
+            chassis:
+              back_caster_wheel_one:
                 {}
-              chassis:
-                back_caster_wheel_one:
+              camera_link:
+                camera_link_optical:
                   {}
-                camera_link:
-                  camera_link_optical:
-                    {}
-                front_caster_wheel_one:
-                  {}
-                laser_frame:
-                  {}
-              left_wheel:
+              front_caster_wheel_one:
                 {}
-              right_wheel:
+              laser_frame:
                 {}
+            left_wheel:
+              {}
+            right_wheel:
+              {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -193,7 +190,6 @@ Visualization Manager:
       Visibility:
         Grid: true
         LaserScan: true
-        Map: true
         RobotModel: true
         TF: true
         Value: true
@@ -232,56 +228,10 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-    - Alpha: 0.699999988079071
-      Binary representation: false
-      Binary threshold: 100
-      Class: rviz_default_plugins/Map
-      Color Scheme: map
-      Draw Behind: false
-      Enabled: true
-      Name: Map
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /map
-      Update Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /map_updates
-      Use Timestamp: false
-      Value: true
-    - Alpha: 0.699999988079071
-      Binary representation: false
-      Binary threshold: 100
-      Class: rviz_default_plugins/Map
-      Color Scheme: costmap
-      Draw Behind: false
-      Enabled: true
-      Name: Map
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /global_costmap/costmap
-      Update Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /global_costmap/costmap_updates
-      Use Timestamp: false
-      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: map
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:

@@ -1,7 +1,7 @@
 # Raspberry Pi Setup Guide
 
 ## Requirements
-- OS: Ubuntu 22.04 Jammy
+- OS: Ubuntu 24.04 Jammy
 - Ros2 jazzy
 
 ## Build your Workspace for devloper pc
@@ -85,17 +85,17 @@ ros2 launch articubot_one rplidar.launch.py
 
 ##### for slam
 ```bash
-ros2 launch articubot_two online_async_launch.py slam_params_file:=/home/atharv/Desktop/dev_Ws/src/articubot_two/config/mapper_params_online_async.yaml
+ros2 launch articubot_two online_async_launch.py slam_params_file:=src/articubot_two/config/mapper_params_online_async.yaml
 ```
 
 ##### for localization
 ```bash
-ros2 launch articubot_two localization_launch.py map:=/home/atharv/Desktop/dev_Ws/map_save.yaml params_file:=/home/atharv/Desktop/dev_Ws/src/articubot_two/config/nav2_params_clean.yaml use_sim_time:=true
+ros2 launch articubot_two localization_launch.py map:=src/articubot_two/map/map_save.yaml params_file:=src/articubot_two/config/nav2_params.yaml use_sim_time:=true
 ```
 
 ##### for navigation
 ```bash
-ros2 launch articubot_two navigation_launch.py params_file:=/home/atharv/Desktop/dev_Ws/src/articubot_two/config/nav2_params_clean.yaml use_sim_time:=true
+ros2 launch articubot_two navigation_launch.py params_file:=src/articubot_two/config/nav2_params.yaml use_sim_time:=true
 ```
 
 
