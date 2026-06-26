@@ -14,7 +14,7 @@ mkdir -p dev_ws/src
 Cloning the project
 ```bash
 cd ~/dev_ws/src
-git clone https://github.com/attu0/articubot_one.git
+git cltwo https://github.com/attu0/articubot_two.git
 
 ```
 
@@ -28,7 +28,7 @@ mkdir -p robot_ws/src
 Cloning the project
 ```bash
 cd ~/robot_ws/src
-git clone https://github.com/attu0/articubot_one.git
+git cltwo https://github.com/attu0/articubot_two.git
 
 ```
 
@@ -50,22 +50,22 @@ source install/setup.bash
 
 ##### ROS Gazebo run with empty world
 ```bash
-ros2 launch articubot_one launch_sim.launch.py 
+ros2 launch articubot_two launch_sim.launch.py 
 ```
 
 ##### ROS Gazebo run with My World
 ```bash
-ros2 launch articubot_one launch_sim.launch.py use_sim_time:=true
+ros2 launch articubot_ launch_sim.launch.py use_sim_time:=true
 ```
 ##### Launch rviz for noraml
 ```bash
-rviz2 -d src/articubot_one/config/map.rviz
+rviz2 -d src/articubot_two/config/map.rviz
 ```
 
 
 ##### Launch rviz for navigation
 ```bash
-rviz2 -d src/articubot_one/config/nav.rviz
+rviz2 -d src/articubot_two/config/nav.rviz
 ```
 
 ##### Control the Robot
@@ -80,7 +80,7 @@ ros2 run rqt_image_view rqt_image_view
 
 ##### Get Lidar feed
 ```bash
-ros2 launch articubot_one rplidar.launch.py
+ros2 launch articubot_two rplidar.launch.py
 ```
 
 ##### for slam
@@ -110,12 +110,12 @@ source install/setup.bash
 
 #### Start Robot
 ```bash
-ros2 launch articubot_one launch_robot.launch.py
+ros2 launch articubot_two launch_robot.launch.py
 ```
 
 ##### Launch rviz
 ```bash
-rviz2 -d src/articubot_one/config/main.rviz
+rviz2 -d src/articubot_two/config/main.rviz
 ```
 
 ##### Control the Robot
@@ -130,5 +130,5 @@ ros2 run rqt_image_view rqt_image_view
 
 ##### Get Lidar feed
 ```bash
-ros2 launch articubot_one rplidar.launch.py
+ros2 launch articubot_two rplidar.launch.py
 ```
