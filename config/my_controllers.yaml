@@ -21,7 +21,7 @@ diff_cont:
     wheel_separation: 0.207
     wheel_radius: 0.035
 
-    # use_stamped_vel: false
+    #use_stamped_vel: false
 
     # open_loop: false    
 
@@ -34,7 +34,7 @@ diff_cont:
     # pose_covariance_diagonal: x
     # twist_covariance_diagonal: x
     # open_loop: x
-    enable_odom_tf: false
+    enable_odom_tf: false # false id using ekf true is not using ekf
 
     # cmd_vel_timeout: x
     # publish_limited_velocity: x
