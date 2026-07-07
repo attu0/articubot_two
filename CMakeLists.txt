@@ -39,6 +39,7 @@ install(
     launch  
     worlds
     meshes 
+    scripts
     map
   DESTINATION share/${PROJECT_NAME}
 )
