@@ -123,11 +123,6 @@ cd src/articubot_two/scripts && ./sim_launch.sh
 
 The articubot two V2 is registered and monitored through the **Beam Command Center** — a centralized platform for managing all Beam Robotics products. Each unit is paired via a cryptographic serial key and streams operational data including camera feed, watering logs, water level, battery health, and location to the operator dashboard.
 
-**Other Beam Robotics products:**
-- [Smart Agricultural Robot V1](https://github.com/xaatim/Smart-Agricultural-Robot) — field-tested precision dosing prototype
-- [Beam Access Control System](https://github.com/xaatim/SmartAccessControl) — biometric access, license plate recognition, surveillance
-- [Beam Surveillance Bot](https://github.com/xaatim/Autonomous_security_robot) — autonomous patrol robot with face recognition
-
 ---
 
 ## Author
