@@ -112,6 +112,11 @@ ros2 launch moveit_config moveit.launch.py
 ros2 run robot_vision crop_detector_node
 ```
 
+**Launch using bash:**
+```bash
+#gazebo and Rviz 
+cd src/articubot_two/scripts && ./launch_sim.bash
+
 ---
 
 ## Beam Robotics Ecosystem
