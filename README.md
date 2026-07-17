@@ -115,8 +115,8 @@ ros2 run robot_vision crop_detector_node
 **Launch using bash:**
 ```bash
 #gazebo and Rviz 
-cd src/articubot_two/scripts && ./launch_sim.bash
-
+cd src/articubot_two/scripts && ./sim_launch.sh
+```
 ---
 
 ## Beam Robotics Ecosystem
