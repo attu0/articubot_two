@@ -5,10 +5,18 @@
 # Beam articubot two V2
 ### Autonomous Precision Agricultural Robot | ROS2 + MoveIt2 + Nav2
 
-[![ROS2](https://img.shields.io/badge/ROS2-Jazzy-blue)](https://docs.ros.org/en/jazzy/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-
-</div>
+<a href="https://github.com/Pana1v/polka/tree/jazzy"><img src="https://img.shields.io/badge/ROS_2-Jazzy-22314E?logo=ros&logoColor=white" alt="ROS 2 Jazzy"/></a>
+<img src="https://img.shields.io/badge/Ubuntu-24.04-E95420?logo=ubuntu&logoColor=white" alt="Ubuntu 24.04"/>
+<img src="https://img.shields.io/badge/build-colcon-blue?logo=ros&logoColor=white" alt="colcon"/>
+<a href="https://github.com/attu0/articubot_two/stargazers">
+  <img src="https://img.shields.io/github/stars/attu0/articubot_two?style=flat" alt="GitHub stars"/>
+</a>
+<a href="https://github.com/attu0/articubot_two/issues">
+  <img src="https://img.shields.io/github/issues/attu0/articubot_two" alt="GitHub issues"/>
+</a>
+<a href="https://github.com/attu0/articubot_two/commits/actual_bot_dev">
+  <img src="https://img.shields.io/github/last-commit/attu0/articubot_two/actual_bot_dev" alt="Last commit"/>
+</a>
 
 ---
 
@@ -114,7 +122,7 @@ ros2 run robot_vision crop_detector_node
 
 **Launch using bash:**
 ```bash
-#gazebo and Rviz 
+#gazebo and Rviz
 cd src/articubot_two/scripts && ./sim_launch.sh
 ```
 ---
