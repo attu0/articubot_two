@@ -54,3 +54,18 @@ ros2 run rqt_image_view rqt_image_view
 ```bash
 ros2 launch articubot_two rplidar.launch.py
 ```
+
+##### Mapping(SLAM)
+```bash
+ros2 launch articubot_two online_async_launch.py slam_params_file:=src/articubot_two/config/mapper_params_online_async.yaml
+```
+
+##### Localization
+```bash
+ros2 launch articubot_two localization_launch.py map:=src/articubot_two/map/map_save.yaml params_file:=src/articubot_two/config/nav2_params.yaml
+```
+
+##### Navigation
+```bash
+ros2 launch articubot_two navigation_launch.py params_file:=src/articubot_two/config/nav2_params.yaml
+```

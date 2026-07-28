@@ -35,7 +35,7 @@ ros2 launch articubot_two launch_sim.launch.py use_sim_time:=true
 
 ##### ROS Gazebo run with My World
 ```bash
-ros2 launch articubot_two launch_sim.launch.py use_sim_time:=true world:=src/articubot_two/worlds/world.world 
+ros2 launch articubot_two launch_sim.launch.py use_sim_time:=true world:=src/articubot_two/worlds/world.world
 ```
 ##### Launch rviz for noraml
 ```bash
@@ -68,4 +68,9 @@ ros2 launch articubot_two localization_launch.py map:=src/articubot_two/map/map_
 ##### Navigation
 ```bash
 ros2 launch articubot_two navigation_launch_sim.py params_file:=src/articubot_two/config/nav2_params_sim.yaml use_sim_time:=true
+```
+
+##### One cmd
+```bash
+cd src/articubot_two/scripts/ && ./sim_launch.sh
 ```
