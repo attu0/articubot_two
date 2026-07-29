@@ -1,142 +1,177 @@
 <div align="center">
 
-![articubot_two](media/main.png)
+![articubot\_two](media/main.png)
 
-# Beam articubot two V2
-### Autonomous Precision Agricultural Robot | ROS2 + MoveIt2 + Nav2
+# Beam Articubot Two V2
 
-<a href="https://github.com/Pana1v/polka/tree/jazzy"><img src="https://img.shields.io/badge/ROS_2-Jazzy-22314E?logo=ros&logoColor=white" alt="ROS 2 Jazzy"/></a>
-<img src="https://img.shields.io/badge/Ubuntu-24.04-E95420?logo=ubuntu&logoColor=white" alt="Ubuntu 24.04"/>
-<img src="https://img.shields.io/badge/build-colcon-blue?logo=ros&logoColor=white" alt="colcon"/>
-<a href="https://github.com/attu0/articubot_two/stargazers">
-  <img src="https://img.shields.io/github/stars/attu0/articubot_two?style=flat" alt="GitHub stars"/>
-</a>
-<a href="https://github.com/attu0/articubot_two/issues">
-  <img src="https://img.shields.io/github/issues/attu0/articubot_two" alt="GitHub issues"/>
-</a>
-<a href="https://github.com/attu0/articubot_two/commits/actual_bot_dev">
-  <img src="https://img.shields.io/github/last-commit/attu0/articubot_two/actual_bot_dev" alt="Last commit"/>
-</a>
+### Differential Drive Mobile Robot built with ROS 2 Jazzy
 
----
-
-## Overview
-
----
-
-
-## System Architecture
-
-The articubot two V2 is built as a multi-package ROS2 workspace:
-
-```
-beam_articubot two_v2/
-├── config/         → Nav2 config, SLAM, AMCL, rviz, yaml
-├── description/    → URDF/Xacro
-├── launch/         → sim, robot, rplidar, slam, amcl, rsp, camera, localization
-├── map/            → map
-├── media/          → screenshots, GIFs
-└── meshes/         → stl files
-└── scripts/        → bash files
-└── worlds/         → sim worlds
-```
----
-
-## Hardware Design
-
-<div align="center">
-
-![Farm Operation](media/real_bot.png)
+<p>
+  <a href="https://docs.ros.org/en/jazzy/">
+    <img src="https://img.shields.io/badge/ROS_2-Jazzy-22314E?logo=ros&logoColor=white" alt="ROS 2 Jazzy"/>
+  </a>
+  <img src="https://img.shields.io/badge/Ubuntu-24.04-E95420?logo=ubuntu&logoColor=white" alt="Ubuntu 24.04"/>
+  <img src="https://img.shields.io/badge/build-colcon-blue?logo=ros&logoColor=white" alt="colcon"/>
+  <a href="https://github.com/attu0/articubot_two/stargazers">
+    <img src="https://img.shields.io/github/stars/attu0/articubot_two" alt="GitHub Stars"/>
+  </a>
+  <a href="https://github.com/attu0/articubot_two/issues">
+    <img src="https://img.shields.io/github/issues/attu0/articubot_two" alt="GitHub Issues"/>
+  </a>
+  <a href="https://github.com/attu0/articubot_two/commits/main">
+    <img src="https://img.shields.io/github/last-commit/attu0/articubot_two/main" alt="Last Commit"/>
+  </a>
+</p>
 
 </div>
 
-The articubot two chassis was designed from scratch in Fusion 360
+---
 
-**Key design decisions:**
+# Overview
 
-- **Differential drive** — 2 large centre drive wheels + 1 front caster roller + 1 rear caster roller.
+**Beam Articubot Two V2** is a differential drive mobile robot developed using **ROS 2 Jazzy**. It provides a complete platform for learning and experimenting with robot modeling, simulation, mapping, localization, and autonomous navigation.
+
+The repository includes support for:
+
+* Gazebo simulation
+* RViz visualization
+* SLAM Toolbox
+* AMCL localization
+* Nav2 navigation
+* `ros2_control`
+* RPLIDAR integration
 
 ---
 
-## Simulation
+# Features
+
+* Differential drive mobile robot
+* URDF/Xacro robot description
+* Gazebo simulation
+* RViz visualization
+* SLAM Toolbox mapping
+* AMCL localization
+* Nav2 navigation
+* `ros2_control` integration
+* RPLIDAR support
+
+---
+
+# Repository Structure
+
+```text
+articubot_two/
+├── config/         # Nav2, SLAM, AMCL, RViz, and controller configuration
+├── description/    # URDF and Xacro files
+├── launch/         # Launch files
+├── map/            # Saved maps
+├── media/          # Images, screenshots, and GIFs
+├── meshes/         # STL meshes
+├── scripts/        # Helper scripts
+└── worlds/         # Gazebo worlds
+```
+
+---
+
+# Hardware
 
 <div align="center">
 
-![RViz LiDAR](media/sim_bot.png)
+![Robot](media/real_bot.png)
 
 </div>
 
-**Autonomous Navigation (Nav2)**
+The robot uses a simple differential drive configuration consisting of:
+
+* Two drive wheels
+* Front caster wheel
+* Rear caster wheel
+* 2D LiDAR
+* IMU
+* Differential drive controller
+
+---
+
+# Simulation
+
+<div align="center">
+
+![Simulation](media/sim_bot.png)
+
+</div>
+
+The robot can be simulated in Gazebo and visualized in RViz.
+
+### Navigation
 
 ![Nav2 Demo](media/nav2.gif)
 
-The robot uses SLAM Toolbox to build a map of the environment on the first run. On subsequent runs, Nav2 localizes using AMCL against the saved map and navigates to waypoints autonomously. The costmap inflates around obstacles to ensure the chassis and arm clear all objects during navigation.
+The navigation stack consists of:
+
+* SLAM Toolbox
+* AMCL
+* Nav2
+* Global and Local Costmaps
+* Global and Local Planners
 
 ---
 
-## Software Stack
+# Software Stack
 
-| Component | Technology |
-|---|---|
-| Framework | ROS2 Humble |
-| Simulation | Gazebo Classic |
-| Navigation | Nav2 + AMCL |
-| Mapping | SLAM Toolbox |
-| Motion Planning | OMPL |
-| Robot Description | URDF + Xacro |
-| Control | ros2_control + diff_drive_controller |
+| Component         | Technology            |
+| ----------------- | --------------------- |
+| Operating System  | Ubuntu 24.04          |
+| ROS Distribution  | ROS 2 Jazzy           |
+| Simulation        | Gazebo Jetty          |
+| Visualization     | RViz2                 |
+| Mapping           | SLAM Toolbox          |
+| Localization      | AMCL                  |
+| Navigation        | Nav2                  |
+| Robot Description | URDF + Xacro          |
+| Control           | ros2_control          |
+| Drive Controller  | diff_drive_controller |
 
 ---
 
-## Getting Started
+# Getting Started
 
-**Prerequisites:**
-- Ubuntu 24.04
-- ROS2 Jazzy
-- Gazebo jetty
-- Nav2 Jazzy
+## Prerequisites
 
-**Build:**
+* Ubuntu 24.04
+* ROS 2 Jazzy
+* Gazebo Jetty
+* Nav2 Jazzy
+
+### Build
+
 ```bash
-git clone https://github.com/xaatim/Beam-articubot two-V2.git
-cd Beam-articubot two-V2
+mkdir -p ros2_ws/src && cd ~/ros2_ws/src
+git clone https://github.com/attu/articubot_two
+cd ~/ros2_ws
 rosdep install --from-paths src --ignore-src -r -y
-colcon build
+colcon build --symlink-install
 source install/setup.bash
 ```
 
-**Launch simulation:**
-```bash
-# Launch Gazebo world with robot
-ros2 launch robot_description gazebo.launch.py
-
-# Launch Nav2 with saved map
-ros2 launch robot_navigation navigation.launch.py
-
-# Launch MoveIt2
-ros2 launch moveit_config moveit.launch.py
-
-# Launch crop detection
-ros2 run robot_vision crop_detector_node
-```
-
-**Launch using bash:**
-```bash
-#gazebo and Rviz
-cd src/articubot_two/scripts && ./sim_launch.sh
-```
 ---
 
-## Beam Robotics Ecosystem
+# Documentation
 
-The articubot two V2 is registered and monitored through the **Beam Command Center** — a centralized platform for managing all Beam Robotics products. Each unit is paired via a cryptographic serial key and streams operational data including camera feed, watering logs, water level, battery health, and location to the operator dashboard.
+Separate guides are provided for simulation and the physical robot.
+
+| Guide                  | Description                                           |
+| ---------------------- | ----------------------------------------------------- |
+| **[`Simulation.md`](readme_for_dev.md)** | Gazebo simulation, SLAM, localization, and Nav2 setup |
+| **[`Robot.md`](readme_for_bot.md)** | Running the project on the physical robot             |
 
 ---
 
-## Author
+# Author
 
 **Atharv Mahesh Mudse**
 
 ---
 
-*Licensed under the MIT License*
+# License
+
+This project is licensed under the **MIT License**.
