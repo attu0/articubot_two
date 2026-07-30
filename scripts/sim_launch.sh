@@ -100,19 +100,19 @@ rviz2 \
 RVIZ_PID=$!
 
 
-echo ""
-echo "=============================================="
-echo " Articubot Two Simulation Running"
-echo "=============================================="
-echo ""
-echo "Teleop:"
-echo ""
-echo "ros2 run teleop_twist_keyboard teleop_twist_keyboard \\"
-echo "  --ros-args \\"
-echo "  --remap cmd_vel:=/diff_cont/cmd_vel_unstamped"
-echo ""
-echo "Press Ctrl+C to stop."
-echo "=============================================="
+# ============================================================
+# Launch Teleop
+# ============================================================
 
+echo "Launching Teleop..."
 
-wait
+gnome-terminal --title="Articubot Teleop" -- bash -c "
+source /opt/ros/jazzy/setup.bash
+source \"$WORKSPACE_DIR/install/setup.bash\"
+
+ros2 run teleop_twist_keyboard teleop_twist_keyboard \
+  --ros-args \
+  --remap cmd_vel:=/diff_cont/cmd_vel_unstamped \
+"
+
+wait "$SIM_PID" "$RVIZ_PID"

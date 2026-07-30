@@ -38,10 +38,13 @@ cleanup() {
     echo ""
     echo "Cleaning up..."
 
-    kill -INT "$SIM_PID" 2>/dev/null
+    kill -INT "$SLAM_PID" 2>/dev/null
     kill -INT "$RVIZ_PID" 2>/dev/null
+    kill -INT "$SIM_PID" 2>/dev/null
 
-    sleep 3
+    wait "$SLAM_PID" 2>/dev/null
+    wait "$RVIZ_PID" 2>/dev/null
+    wait "$SIM_PID" 2>/dev/null
 
     echo "Simulation stopped."
     exit 0
@@ -105,24 +108,24 @@ RVIZ_PID=$!
 
 echo "Launching SLAM..."
 
-ros2 launch articubot_two online_async_launch.py slam_params_file:=src/articubot_two/config/mapper_params_online_async.yaml
+ros2 launch articubot_two online_async_launch.py \
+    slam_params_file:="$PACKAGE_DIR/config/mapper_params_online_async.yaml" &
 
 SLAM_PID=$!
 
+# ============================================================
+# Launch Teleop
+# ============================================================
 
-echo ""
-echo "=============================================="
-echo " Articubot Two Simulation Running"
-echo "=============================================="
-echo ""
-echo "Teleop:"
-echo ""
-echo "ros2 run teleop_twist_keyboard teleop_twist_keyboard \\"
-echo "  --ros-args \\"
-echo "  --remap cmd_vel:=/diff_cont/cmd_vel_unstamped"
-echo ""
-echo "Press Ctrl+C to stop."
-echo "=============================================="
+echo "Launching Teleop..."
 
+gnome-terminal --title="Articubot Teleop" -- bash -c "
+source /opt/ros/jazzy/setup.bash
+source \"$WORKSPACE_DIR/install/setup.bash\"
 
-wait
+ros2 run teleop_twist_keyboard teleop_twist_keyboard \
+  --ros-args \
+  --remap cmd_vel:=/diff_cont/cmd_vel_unstamped \
+"
+
+wait "$SIM_PID" "$RVIZ_PID" "$SLAM_PID"
