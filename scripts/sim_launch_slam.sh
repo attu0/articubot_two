@@ -9,7 +9,7 @@ PACKAGE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 WORKSPACE_DIR="$(cd "$PACKAGE_DIR/../.." && pwd)"
 
 WORLD_FILE="$PACKAGE_DIR/worlds/world.world"
-RVIZ_CONFIG="$PACKAGE_DIR/config/main.rviz"
+RVIZ_CONFIG="$PACKAGE_DIR/config/map.rviz"
 
 
 # ============================================================
@@ -76,14 +76,14 @@ sleep 10
 # Move Gazebo Camera
 # ============================================================
 
-# echo "Adjusting camera position..."
+echo "Adjusting camera position..."
 
-# gz service \
-#     -s /gui/move_to/pose \
-#     --reqtype gz.msgs.GUICamera \
-#     --reptype gz.msgs.Boolean \
-#     --timeout 2000 \
-#     --req "pose: {position: {x: 0.0, y: -2.0, z: 2.0} orientation: {x: -0.2706, y: 0.2706, z: 0.6533, w: 0.6533}}"
+gz service \
+    -s /gui/move_to/pose \
+    --reqtype gz.msgs.GUICamera \
+    --reptype gz.msgs.Boolean \
+    --timeout 2000 \
+    --req "pose: {position: {x: 0.0, y: -2.0, z: 2.0} orientation: {x: -0.2706, y: 0.2706, z: 0.6533, w: 0.6533}}"
 
 
 # ============================================================
@@ -98,6 +98,16 @@ rviz2 \
     -p use_sim_time:=true &
 
 RVIZ_PID=$!
+
+# ============================================================
+# Launch SLAM
+# ============================================================
+
+echo "Launching SLAM..."
+
+ros2 launch articubot_two online_async_launch.py slam_params_file:=src/articubot_two/config/mapper_params_online_async.yaml
+
+SLAM_PID=$!
 
 
 echo ""
