@@ -71,6 +71,11 @@ ros2 launch articubot_two navigation_launch_sim.py params_file:=src/articubot_tw
 ```
 
 ##### One cmd
+for only sim
 ```bash
 cd src/articubot_two/scripts/ && ./sim_launch.sh
+```
+for sim slam
+```bash
+cd src/articubot_two/scripts/ && ./sim_launch_slam.sh
 ```

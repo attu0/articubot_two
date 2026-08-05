@@ -17,6 +17,7 @@ RVIZ_CONFIG="$PACKAGE_DIR/config/main.rviz"
 # ============================================================
 
 source /opt/ros/jazzy/setup.bash
+export GZ_SIM_RESOURCE_PATH=/home/atharv/dev_ws/src/articubot_two/models
 
 if [ ! -f "$WORKSPACE_DIR/install/setup.bash" ]; then
     echo "Workspace has not been built."
@@ -100,19 +101,19 @@ rviz2 \
 RVIZ_PID=$!
 
 
-echo ""
-echo "=============================================="
-echo " Articubot Two Simulation Running"
-echo "=============================================="
-echo ""
-echo "Teleop:"
-echo ""
-echo "ros2 run teleop_twist_keyboard teleop_twist_keyboard \\"
-echo "  --ros-args \\"
-echo "  --remap cmd_vel:=/diff_cont/cmd_vel_unstamped"
-echo ""
-echo "Press Ctrl+C to stop."
-echo "=============================================="
+# ============================================================
+# Launch Teleop
+# ============================================================
 
+echo "Launching Teleop..."
 
-wait
+gnome-terminal --title="Articubot Teleop" -- bash -c "
+source /opt/ros/jazzy/setup.bash
+source \"$WORKSPACE_DIR/install/setup.bash\"
+
+ros2 run teleop_twist_keyboard teleop_twist_keyboard \
+  --ros-args \
+  --remap cmd_vel:=/diff_cont/cmd_vel_unstamped \
+"
+
+wait "$SIM_PID" "$RVIZ_PID"
