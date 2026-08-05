@@ -17,6 +17,7 @@ RVIZ_CONFIG="$PACKAGE_DIR/config/main.rviz"
 # ============================================================
 
 source /opt/ros/jazzy/setup.bash
+export GZ_SIM_RESOURCE_PATH=/home/atharv/dev_ws/src/articubot_two/models
 
 if [ ! -f "$WORKSPACE_DIR/install/setup.bash" ]; then
     echo "Workspace has not been built."
