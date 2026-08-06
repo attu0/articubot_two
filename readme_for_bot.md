@@ -49,6 +49,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
 ```bash
 ros2 run rqt_image_view rqt_image_view
 ```
+Set it to compressed for faster image, the image will be less detailed
 
 ##### Get Lidar feed
 ```bash
