@@ -33,12 +33,13 @@ if(BUILD_TESTING)
 endif()
 
 install(
-  DIRECTORY 
-    config 
-    description 
-    launch  
+  DIRECTORY
+    scripts
+    config
+    description
+    launch
     worlds
-    meshes 
+    meshes
     map
   DESTINATION share/${PROJECT_NAME}
 )

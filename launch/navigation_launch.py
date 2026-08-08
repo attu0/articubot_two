@@ -249,7 +249,7 @@ def generate_launch_description():
                 executable='relay',
                 name='cmd_vel_relay',
                 output='screen',
-                arguments=['/cmd_vel', '/diff_cont/cmd_vel_unstamped'],
+                arguments=['/cmd_vel', '/diff_cont/cmd_vel'],
             ),
         ],
     )
