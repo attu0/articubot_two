@@ -269,20 +269,43 @@
         <loop>true</loop>
         <delay_start>0.0</delay_start>
         <auto_start>true</auto_start>
-        <trajectory id="0" type="walk">
-          <waypoint>
-            <time>0</time>
-            <pose>0 0 0 0 0 1.57</pose>
-          </waypoint>
-          <waypoint>
-            <time>5</time>
-            <pose>0 8 1.0 0 0 1.57</pose>
-          </waypoint>
-          <waypoint>
-            <time>10</time>
-            <pose>0 0 0 0 0 1.57</pose>
-          </waypoint>
-        </trajectory>
+      <trajectory id="0" type="walk">
+        <!-- Start -->
+        <waypoint>
+          <time>0</time>
+          <pose>-1 0 0 0 0 1.57</pose>
+        </waypoint>
+
+        <!-- Move forward 5 m -->
+        <waypoint>
+          <time>5</time>
+          <pose>-1 4 0 0 0 1.57</pose> // x y z roll pitch yaw
+        </waypoint>
+
+        <!-- Turn around -->
+        <waypoint>
+          <time>7</time>
+          <pose>-1 4 0 0 0 -1.57</pose>
+        </waypoint>
+
+        <!-- Move backward 10 m -->
+        <waypoint>
+          <time>17</time>
+          <pose>-1 -4 0 0 0 -1.57</pose>
+        </waypoint>
+
+        <!-- Turn around -->
+        <waypoint>
+          <time>19</time>
+          <pose>-1 -4 0 0 0 1.57</pose>
+        </waypoint>
+
+        <!-- Return to start -->
+        <waypoint>
+          <time>24</time>
+          <pose>-1 0 0 0 0 1.57</pose>
+        </waypoint>
+      </trajectory>
       </script>
     </actor>
 
