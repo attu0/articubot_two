@@ -8,8 +8,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PACKAGE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 WORKSPACE_DIR="$(cd "$PACKAGE_DIR/../.." && pwd)"
 
-WORLD_FILE="$PACKAGE_DIR/worlds/world_slam.world"
-RVIZ_CONFIG="$PACKAGE_DIR/config/map.rviz"
+WORLD_FILE="$PACKAGE_DIR/worlds/world.world"
+RVIZ_CONFIG="$PACKAGE_DIR/config/nav.rviz"
+
+MAP_FILE="$PACKAGE_DIR/map/map_save.yaml"
+NAV2_PARAMS="$PACKAGE_DIR/config/nav2_params.yaml"
+NAV2_PARAMS_SIM="$PACKAGE_DIR/config/nav2_params_sim.yaml"
 
 
 # ============================================================
@@ -19,12 +23,12 @@ RVIZ_CONFIG="$PACKAGE_DIR/config/map.rviz"
 source /opt/ros/jazzy/setup.bash
 
 if [ ! -f "$WORKSPACE_DIR/install/setup.bash" ]; then
-    echo "Workspace has not been built."
-    echo ""
-    echo "Run:"
-    echo "  cd $WORKSPACE_DIR"
-    echo "  colcon build --symlink-install"
-    exit 1
+echo "Workspace has not been built."
+echo ""
+echo "Run:"
+echo "  cd $WORKSPACE_DIR"
+echo "  colcon build --symlink-install"
+exit 1
 fi
 
 source "$WORKSPACE_DIR/install/setup.bash"
@@ -35,19 +39,21 @@ source "$WORKSPACE_DIR/install/setup.bash"
 # ============================================================
 
 cleanup() {
-    echo ""
-    echo "Cleaning up..."
+echo ""
+echo "Cleaning up..."
 
-    kill -INT "$SLAM_PID" 2>/dev/null
-    kill -INT "$RVIZ_PID" 2>/dev/null
-    kill -INT "$SIM_PID" 2>/dev/null
+kill -INT "$LOC_PID" 2>/dev/null
+kill -INT "$NAV_PID" 2>/dev/null
+kill -INT "$RVIZ_PID" 2>/dev/null
+kill -INT "$SIM_PID" 2>/dev/null
 
-    wait "$SLAM_PID" 2>/dev/null
-    wait "$RVIZ_PID" 2>/dev/null
-    wait "$SIM_PID" 2>/dev/null
+wait "$LOC_PID" 2>/dev/null
+wait "$NAV_PID" 2>/dev/null
+wait "$RVIZ_PID" 2>/dev/null
+wait "$SIM_PID" 2>/dev/null
 
-    echo "Simulation stopped."
-    exit 0
+echo "Simulation stopped."
+exit 0
 }
 
 trap cleanup SIGINT SIGTERM
@@ -60,8 +66,8 @@ trap cleanup SIGINT SIGTERM
 echo "Launching Gazebo simulation..."
 
 ros2 launch articubot_two launch_sim.launch.py \
-    use_sim_time:=true \
-    world:="$WORLD_FILE" &
+use_sim_time:=true \
+world:="$WORLD_FILE" &
 
 SIM_PID=$!
 
@@ -82,11 +88,11 @@ sleep 10
 echo "Adjusting camera position..."
 
 gz service \
-    -s /gui/move_to/pose \
-    --reqtype gz.msgs.GUICamera \
-    --reptype gz.msgs.Boolean \
-    --timeout 2000 \
-    --req "pose: {position: {x: 0.0, y: -2.0, z: 2.0} orientation: {x: -0.2706, y: 0.2706, z: 0.6533, w: 0.6533}}"
+-s /gui/move_to/pose \
+--reqtype gz.msgs.GUICamera \
+--reptype gz.msgs.Boolean \
+--timeout 2000 \
+--req "pose: {position: {x: 0.0, y: -2.0, z: 2.0} orientation: {x: -0.2706, y: 0.2706, z: 0.6533, w: 0.6533}}"
 
 
 # ============================================================
@@ -96,22 +102,43 @@ gz service \
 echo "Launching RViz..."
 
 rviz2 \
-    -d "$RVIZ_CONFIG" \
-    --ros-args \
-    -p use_sim_time:=true &
+-d "$RVIZ_CONFIG" \
+--ros-args \
+-p use_sim_time:=true &
 
 RVIZ_PID=$!
 
 # ============================================================
-# Launch SLAM
+# Launch Localization
 # ============================================================
 
-echo "Launching SLAM..."
+echo "Launching Localization..."
 
-ros2 launch articubot_two online_async_launch.py \
-    slam_params_file:="$PACKAGE_DIR/config/mapper_params_online_async.yaml" &
+ros2 launch articubot_two localization_launch.py \
+map:="$MAP_FILE" \
+params_file:="$NAV2_PARAMS" &
 
-SLAM_PID=$!
+LOC_PID=$!
+
+# ============================================================
+# Wait for Localization to initialize
+# ============================================================
+
+echo "Waiting 5 seconds for localization to initialize..."
+
+sleep 5
+
+# ============================================================
+# Launch Navigation
+# ============================================================
+
+echo "Launching Navigation..."
+
+ros2 launch articubot_two navigation_launch_sim.py \
+params_file:="$NAV2_PARAMS_SIM" \
+use_sim_time:=true &
+
+NAV_PID=$!
 
 # ============================================================
 # Launch Teleop
@@ -128,4 +155,4 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard \
   --remap cmd_vel:=/diff_cont/cmd_vel_unstamped \
 "
 
-wait "$SIM_PID" "$RVIZ_PID" "$SLAM_PID"
+wait "$SIM_PID" "$RVIZ_PID" "$LOC_PID" "$NAV_PID"
