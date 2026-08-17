@@ -9,17 +9,14 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
 
-    # Use simulation time if enabled
     use_sim_time = LaunchConfiguration('use_sim_time')
 
-    # Path to joystick configuration
     joy_params = os.path.join(
         get_package_share_directory('articubot_two'),
         'config',
         'joystick.yaml'
     )
 
-    # Joystick driver
     joy_node = Node(
         package='joy',
         executable='joy_node',
@@ -30,8 +27,6 @@ def generate_launch_description():
         ]
     )
 
-    # Joystick teleoperation
-    # Directly publishes Twist messages to the diff drive controller
     teleop_node = Node(
         package='teleop_twist_joy',
         executable='teleop_node',
@@ -41,22 +36,18 @@ def generate_launch_description():
             {'use_sim_time': use_sim_time}
         ],
         remappings=[
-            ('/cmd_vel', '/diff_cont/cmd_vel_unstamped')
+            ('/cmd_vel', '/diff_cont/cmd_vel')
         ]
     )
 
     return LaunchDescription([
 
-        # Launch argument
         DeclareLaunchArgument(
             'use_sim_time',
             default_value='false',
             description='Use simulation time if true'
         ),
 
-        # Joystick driver
         joy_node,
-
-        # Joystick teleoperation
         teleop_node
     ])
